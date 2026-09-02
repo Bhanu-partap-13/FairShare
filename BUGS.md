@@ -98,10 +98,9 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 10
 
-**How to reproduce:**
+**How to reproduce:** In the Summary section, add a new member name (e.g. "Maya") and click "Add".
 
-**What is wrong:**
+**What is wrong:** The new member does not show up in the "Paid so far" breakdown until an expense is modified. In addition, the Add Expense form does not include the new member in its split list, and the form retains input values after adding an expense.
 
-**What I changed:**
+**What I changed:** Added `members` to the `useMemo` dependency list in `src/components/SummaryCards.jsx`. In `src/components/AddExpenseForm.jsx`, added a `useEffect` hook to keep `splitWith` up to date when members are added, and cleared the `description` and `amount` form inputs on submission.
 
----

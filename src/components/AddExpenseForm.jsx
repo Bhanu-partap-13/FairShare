@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { percentsSumTo100 } from "../lib/money.js";
 
 const CATEGORIES = ["Food", "Travel", "Fun", "Stay"];
@@ -23,6 +23,16 @@ export default function AddExpenseForm({ members, onAdd }) {
   const [splitWith, setSplitWith] = useState(members.map((m) => m.id));
   const [percents, setPercents] = useState(evenPercents(members.map((m) => m.id)));
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    setSplitWith((prev) => {
+      const valid = prev.filter((id) => members.some((m) => m.id === id));
+      const newMembers = members.filter((m) => !prev.includes(m.id)).map((m) => m.id);
+      const next = [...valid, ...newMembers];
+      setPercents(evenPercents(next));
+      return next;
+    });
+  }, [members]);
 
   const selected = useMemo(
     () => members.filter((m) => splitWith.includes(m.id)),
@@ -64,6 +74,8 @@ export default function AddExpenseForm({ members, onAdd }) {
       date: new Date(date),
       category,
     });
+    setDescription("");
+    setAmount("");
   }
 
   return (
