@@ -104,3 +104,12 @@ Keep this file in the repo and **commit it** with your fixes.
 
 **What I changed:** Added `members` to the `useMemo` dependency list in `src/components/SummaryCards.jsx`. In `src/components/AddExpenseForm.jsx`, added a `useEffect` hook to keep `splitWith` up to date when members are added, and cleared the `description` and `amount` form inputs on submission.
 
+---
+
+## Bug 11
+
+**How to reproduce:** In the filter section, just search filter that only matches ddescription (mainly: Ignoring Payer & Category)
+
+**What is wrong:** Basically, It has made static and provided a value of e.descriptin. So, I have to fix that
+
+**What I changed:** I have to edit the src/App.jsx, tb build a member lookup map and expand the search query check,so that q matches the expense description, the name or category.
