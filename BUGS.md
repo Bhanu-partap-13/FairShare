@@ -48,6 +48,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 5
 
+**How to reproduce:** Filter expenses (e.g. by category "Fun" or search query) and click "Delete" on any row, or edit the amount input.
+
+**What is wrong:** A completely different expense is deleted or updated. This is because the sorted and filtered list index was passed to the reducer, which applied `splice` or updated `state.expenses[action.index]`.
+
+**What I changed:** Updated `DELETE_EXPENSE` and `UPDATE_EXPENSE` reducer cases in `src/state/store.js` to operate by expense `id` rather than array `index`. Updated `src/App.jsx` and `src/components/ExpenseList.jsx` to pass `id` and use `key={expense.id}`.
+
+---
+
+## Bug 6
+
 **How to reproduce:**
 
 **What is wrong:**
