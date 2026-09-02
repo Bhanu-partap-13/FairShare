@@ -18,6 +18,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 2
 
+**How to reproduce:** Look at the Balances panel for any member who paid more than their share (e.g. Ben or Carlos).
+
+**What is wrong:** Members who paid more than their share are shown in red with the label “owes $X.XX”, while members who spent less than their share are shown in green with “is owed $X.XX”. The labels and styling are inverted.
+
+**What I changed:** In `src/components/BalancesPanel.jsx`, corrected the conditional check so that a positive balance (`bal > 0.005`) displays `is owed` with the green `.owed` style, and a negative balance (`bal < -0.005`) displays `owes` with the red `.owe` style.
+
+---
+
+## Bug 3
+
 **How to reproduce:**
 
 **What is wrong:**
