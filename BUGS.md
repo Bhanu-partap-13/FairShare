@@ -38,6 +38,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 4
 
+**How to reproduce:** In the Filter section, select any person in the "Paid by" dropdown (e.g. "Aisha Khan").
+
+**What is wrong:** All expenses disappear and the list displays “No expenses match these filters.”, even when that member has paid expenses in the list.
+
+**What I changed:** In `src/App.jsx`, changed `e.paidBy !== paidBy` to `Number(e.paidBy) !== Number(paidBy)` to fix the type mismatch between string option values from the `<select>` element and numeric member IDs on expenses.
+
+---
+
+## Bug 5
+
 **How to reproduce:**
 
 **What is wrong:**
