@@ -58,6 +58,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 6
 
+**How to reproduce:** Create expenses such that a debtor owes the exact same amount that a creditor is owed (for example, Person A owes $50 and Person B is owed $50).
+
+**What is wrong:** The "Settle up" panel shows no transfers between them. The algorithm contained an empty `else` block when `d.amount === c.amount` that incremented pointers without creating a transfer.
+
+**What I changed:** In `src/lib/settle.js`, restructured the loop using `Math.min(d.amount, c.amount)` to always create a transfer of the matching amount, ensuring no balances are dropped.
+
+---
+
+## Bug 7
+
 **How to reproduce:**
 
 **What is wrong:**
