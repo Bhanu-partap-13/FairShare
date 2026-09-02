@@ -88,6 +88,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 9
 
+**How to reproduce:** Reload the browser page after visiting the app.
+
+**What is wrong:** `loadState` in `src/state/store.js` did not rehydrate persisted data from `localStorage`, leaving `expense.date` as ISO string values rather than `Date` objects. This broke localized date formatting in `formatDate` and caused `NaN` in date sorting.
+
+**What I changed:** Updated `loadState` in `src/state/store.js` to call `hydrate(JSON.parse(raw))` so dates are properly restored as `Date` objects on every reload. Also improved `formatDate` in `src/lib/format.js` to parse both string and Date objects gracefully.
+
+---
+
+## Bug 10
+
 **How to reproduce:**
 
 **What is wrong:**
