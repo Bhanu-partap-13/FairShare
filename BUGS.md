@@ -68,6 +68,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 7
 
+**How to reproduce:** Inspect or record an expense whose amount cannot be split into even whole cents (such as $100 split 3 ways).
+
+**What is wrong:** Each person gets $33.33, totaling $99.99. 1 cent is lost in rounding, violating the rule that equal split shares must sum to the full bill.
+
+**What I changed:** In `src/lib/money.js`, updated `splitEqual` to calculate base cents and distribute remainder cents among the participants, ensuring the sum of shares always matches the total bill.
+
+---
+
+## Bug 8
+
 **How to reproduce:**
 
 **What is wrong:**
