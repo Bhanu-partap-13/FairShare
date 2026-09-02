@@ -123,3 +123,10 @@ Keep this file in the repo and **commit it** with your fixes.
 
 **What I changed:** I updated `percentsSumTo100()` in `src/lib/money.js` to ensure all percentage values are positive (`> 0`). 
 
+
+---
+
+## Additionals
+First of all make sure, if this application will scale we have to add apagination concepts in teh expenses section for low latency of the website, and that helps users to keep it self organised. The demo you gave me was very basic with statis data. For now as this has o authorization, database, I cannot suggest any of the system design concept.
+
+### Thank you foir the assignment
