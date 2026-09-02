@@ -28,6 +28,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 3
 
+**How to reproduce:** Check an expense where the payer is not included in the split, such as seed expense "Uber to airport" ($60 paid by Diya, split between Aisha and Ben). Diya is credited only $30 instead of $60.
+
+**What is wrong:** `computeBalances` in `src/lib/balances.js` contains a check `!(exp.paidBy in shares)` that subtracts `amount / n` from the payer's balance. When someone pays for a bill they didn't consume, they should be reimbursed in full. This bug also broke the closed-group invariant where net balances across all members sum to zero.
+
+**What I changed:** Removed the erroneous penalty check and deduction from `computeBalances` in `src/lib/balances.js` so payers get full credit for payments made for others.
+
+---
+
+## Bug 4
+
 **How to reproduce:**
 
 **What is wrong:**
