@@ -78,6 +78,16 @@ Keep this file in the repo and **commit it** with your fixes.
 
 ## Bug 8
 
+**How to reproduce:** In Add Expense, select "Custom %" with 3 members (which auto-fills 33.33%, 33.33%, 33.34%), enter description and amount, then click "Save expense".
+
+**What is wrong:** The form rejects submission with "Percentages must add to 100." due to floating point addition (`100.00000000000001 !== 100`). Also, dollar amounts calculated from percentages could lose cents due to independent rounding.
+
+**What I changed:** In `src/lib/money.js`, updated `percentsSumTo100` to allow floating-point precision tolerance (`Math.abs(sum - 100) < 0.01`), and refactored `splitByPercent` to reconcile allocated cents so the shares in dollars cover the original bill amount.
+
+---
+
+## Bug 9
+
 **How to reproduce:**
 
 **What is wrong:**
